@@ -19,16 +19,16 @@ public final class Products {
 
   private final IncomeProduct income;
 
-  private final SwitchProduct switch_;
+  private final SwitchProduct _switch;
 
   private int _cachedHashCode;
 
   Products(IdentityProduct identity, EngagementProduct engagement, IncomeProduct income,
-      SwitchProduct switch_) {
+      SwitchProduct _switch) {
     this.identity = identity;
     this.engagement = engagement;
     this.income = income;
-    this.switch_ = switch_;
+    this._switch = _switch;
   }
 
   @JsonProperty("identity")
@@ -48,7 +48,7 @@ public final class Products {
 
   @JsonProperty("switch")
   public SwitchProduct getSwitch() {
-    return switch_;
+    return _switch;
   }
 
   @Override
@@ -58,20 +58,20 @@ public final class Products {
   }
 
   private boolean equalTo(Products other) {
-    return identity.equals(other.identity) && engagement.equals(other.engagement) && income.equals(other.income) && switch_.equals(other.switch_);
+    return identity.equals(other.identity) && engagement.equals(other.engagement) && income.equals(other.income) && _switch.equals(other._switch);
   }
 
   @Override
   public int hashCode() {
     if (_cachedHashCode == 0) {
-      _cachedHashCode = Objects.hash(this.identity, this.engagement, this.income, this.switch_);
+      _cachedHashCode = Objects.hash(this.identity, this.engagement, this.income, this._switch);
     }
     return _cachedHashCode;
   }
 
   @Override
   public String toString() {
-    return "Products{" + "identity: " + identity + ", engagement: " + engagement + ", income: " + income + ", switch_: " + switch_ + "}";
+    return "Products{" + "identity: " + identity + ", engagement: " + engagement + ", income: " + income + ", _switch: " + _switch + "}";
   }
 
   public static IdentityStage builder() {
@@ -93,7 +93,7 @@ public final class Products {
   }
 
   public interface SwitchStage {
-    _FinalStage switch_(SwitchProduct switch_);
+    _FinalStage _switch(SwitchProduct _switch);
   }
 
   public interface _FinalStage {
@@ -110,7 +110,7 @@ public final class Products {
 
     private IncomeProduct income;
 
-    private SwitchProduct switch_;
+    private SwitchProduct _switch;
 
     private Builder() {
     }
@@ -120,7 +120,7 @@ public final class Products {
       identity(other.getIdentity());
       engagement(other.getEngagement());
       income(other.getIncome());
-      switch_(other.getSwitch());
+      _switch(other.getSwitch());
       return this;
     }
 
@@ -147,14 +147,14 @@ public final class Products {
 
     @Override
     @JsonSetter("switch")
-    public _FinalStage switch_(SwitchProduct switch_) {
-      this.switch_ = switch_;
+    public _FinalStage _switch(SwitchProduct _switch) {
+      this._switch = _switch;
       return this;
     }
 
     @Override
     public Products build() {
-      return new Products(identity, engagement, income, switch_);
+      return new Products(identity, engagement, income, _switch);
     }
   }
 }
