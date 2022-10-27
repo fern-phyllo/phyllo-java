@@ -68,7 +68,7 @@ public final class CreateUserRequest {
   }
 
   public interface ExternalIdStage {
-    _FinalStage externalId(ExternalId externalId);
+    _FinalStage externalId(String externalId);
   }
 
   public interface _FinalStage {
@@ -102,7 +102,7 @@ public final class CreateUserRequest {
 
     @Override
     @JsonSetter("external_id")
-    public _FinalStage externalId(ExternalId externalId) {
+    public _FinalStage externalId(String externalId) {
       this.externalId = externalId;
       return this;
     }
