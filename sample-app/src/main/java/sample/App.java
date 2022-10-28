@@ -7,6 +7,7 @@ import com.phyllo.connect.api.client.PhylloConnectApiClient
 import com.phyllo.connect.api.client.connect.endpoints.CreateUser;
 import com.phyllo.connect.api.client.connect.exceptions.CreateUserException;
 import com.phyllo.connect.api.client.connect.types.CreateUserRequest;
+import com.phyllo.connect.api.client.connect.types.User;
 
 public final class App {
   public static void main(String[] args) {
@@ -18,13 +19,13 @@ public final class App {
             new PhylloConnectApiClient("api.getphyllo.com", auth);
 
     try {
-      CreateUser response = phylloConnectApiClient.connect().createUser(CreateUser.Request.builder()
+      User user = phylloConnectApiClient.connect().createUser(CreateUser.Request.builder()
               .body(CreateUserRequest.builder()
                       .name("John Doe")
                       .externalId("179a0bb4-c572-4477-9457-7dacf1b84848")
                       .build())
               .build());
-      System.out.println("Created a user! The user ID is " + response.getId());
+      System.out.println("Created a user! The user ID is " + user.getId());
     } catch (CreateUserException e) {
       System.out.println("Failed to create a user" + e.getMessage());
     }
