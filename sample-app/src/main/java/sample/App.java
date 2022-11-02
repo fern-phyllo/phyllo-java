@@ -3,7 +3,7 @@ package sample;
 import java.lang.String;
 
 import com.phyllo.connect.api.client.BasicAuth;
-import com.phyllo.connect.api.client.PhylloConnectApiClient
+import com.phyllo.connect.api.client.PhylloConnectApiClient;
 import com.phyllo.connect.api.client.connect.endpoints.CreateUser;
 import com.phyllo.connect.api.client.connect.exceptions.CreateUserException;
 import com.phyllo.connect.api.client.connect.types.CreateUserRequest;
