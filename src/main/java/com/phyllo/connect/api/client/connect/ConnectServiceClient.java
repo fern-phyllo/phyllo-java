@@ -1,6 +1,5 @@
 package com.phyllo.connect.api.client.connect;
 
-import com.phyllo.connect.api.client.BasicAuth;
 import com.phyllo.connect.api.client.connect.endpoints.CreateSdkToken;
 import com.phyllo.connect.api.client.connect.endpoints.CreateUser;
 import com.phyllo.connect.api.client.connect.endpoints.DisconnectAccount;
@@ -29,6 +28,7 @@ import com.phyllo.connect.api.client.connect.types.DisconnectAccountResponse;
 import com.phyllo.connect.api.client.connect.types.SDKTokenResponse;
 import com.phyllo.connect.api.client.connect.types.User;
 import com.phyllo.connect.api.client.connect.types.WorkPlatform;
+import com.phyllo.connect.api.core.BasicAuth;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.util.Optional;
@@ -84,7 +84,7 @@ public final class ConnectServiceClient {
   public SDKTokenResponse createSDKToken(CreateSdkToken.Request request) throws
       CreateSdkTokenException {
     BasicAuth authValue = request.getAuthOverride().orElseGet(() -> this.auth.orElseThrow(() -> new RuntimeException("Auth is required for createSDKToken")));
-    return this.service.createSDKToken(authValue, request.getBody());
+    return this.service.createSdkToken(authValue, request.getBody());
   }
 
   public Account getAccount(GetAccount.Request request) throws GetAccountException {

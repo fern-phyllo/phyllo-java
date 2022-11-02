@@ -1,8 +1,6 @@
 package com.phyllo.connect.api.client.connect;
 
-import com.fern.java.jackson.ClientObjectMappers;
 import com.fern.java.jersey.contracts.OptionalAwareContract;
-import com.phyllo.connect.api.client.BasicAuth;
 import com.phyllo.connect.api.client.connect.exceptions.CreateSdkTokenException;
 import com.phyllo.connect.api.client.connect.exceptions.CreateUserException;
 import com.phyllo.connect.api.client.connect.exceptions.DisconnectAccountException;
@@ -27,6 +25,8 @@ import com.phyllo.connect.api.client.connect.types.User;
 import com.phyllo.connect.api.client.connect.types.UserId;
 import com.phyllo.connect.api.client.connect.types.WorkPlatform;
 import com.phyllo.connect.api.client.connect.types.WorkPlatformId;
+import com.phyllo.connect.api.core.BasicAuth;
+import com.phyllo.connect.api.core.ObjectMappers;
 import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
@@ -82,7 +82,7 @@ interface ConnectService {
 
   @POST
   @Path("/sdk-tokens")
-  SDKTokenResponse createSDKToken(@HeaderParam("Authorization") BasicAuth auth,
+  SDKTokenResponse createSdkToken(@HeaderParam("Authorization") BasicAuth auth,
       SDKTokenRequest body) throws CreateSdkTokenException;
 
   @GET
@@ -106,8 +106,8 @@ interface ConnectService {
   static ConnectService getClient(String url) {
     return Feign.builder()
         .contract(new OptionalAwareContract(new JAXRSContract()))
-        .decoder(new JacksonDecoder(ClientObjectMappers.JSON_MAPPER))
-        .encoder(new JacksonEncoder(ClientObjectMappers.JSON_MAPPER))
+        .decoder(new JacksonDecoder(ObjectMappers.JSON_MAPPER))
+        .encoder(new JacksonEncoder(ObjectMappers.JSON_MAPPER))
         .errorDecoder(new ConnectServiceErrorDecoder()).target(ConnectService.class, url);
   }
 }

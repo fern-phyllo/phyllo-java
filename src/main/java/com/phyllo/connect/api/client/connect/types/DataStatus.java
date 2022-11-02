@@ -8,15 +8,15 @@ import java.lang.String;
 import java.util.Locale;
 
 public final class DataStatus {
-  public static final DataStatus PARTIAL_SYNCED = new DataStatus(Value.PARTIAL_SYNCED, "PARTIAL_SYNCED");
+  public static final DataStatus NOT_SUPPORTED = new DataStatus(Value.NOT_SUPPORTED, "NOT_SUPPORTED");
+
+  public static final DataStatus NOT_SYNCED = new DataStatus(Value.NOT_SYNCED, "NOT_SYNCED");
 
   public static final DataStatus IN_PROGRESS = new DataStatus(Value.IN_PROGRESS, "IN_PROGRESS");
 
-  public static final DataStatus NOT_SUPPORTED = new DataStatus(Value.NOT_SUPPORTED, "NOT_SUPPORTED");
+  public static final DataStatus PARTIAL_SYNCED = new DataStatus(Value.PARTIAL_SYNCED, "PARTIAL_SYNCED");
 
   public static final DataStatus SYNCED = new DataStatus(Value.SYNCED, "SYNCED");
-
-  public static final DataStatus NOT_SYNCED = new DataStatus(Value.NOT_SYNCED, "NOT_SYNCED");
 
   private final Value value;
 
@@ -50,16 +50,16 @@ public final class DataStatus {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
-      case PARTIAL_SYNCED:
-        return visitor.visitPartialSynced();
-      case IN_PROGRESS:
-        return visitor.visitInProgress();
       case NOT_SUPPORTED:
         return visitor.visitNotSupported();
-      case SYNCED:
-        return visitor.visitSynced();
       case NOT_SYNCED:
         return visitor.visitNotSynced();
+      case IN_PROGRESS:
+        return visitor.visitInProgress();
+      case PARTIAL_SYNCED:
+        return visitor.visitPartialSynced();
+      case SYNCED:
+        return visitor.visitSynced();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -72,16 +72,16 @@ public final class DataStatus {
   public static DataStatus valueOf(String value) {
     String upperCasedValue = value.toUpperCase(Locale.ROOT);
     switch (upperCasedValue) {
-      case "PARTIAL_SYNCED":
-        return PARTIAL_SYNCED;
-      case "IN_PROGRESS":
-        return IN_PROGRESS;
       case "NOT_SUPPORTED":
         return NOT_SUPPORTED;
-      case "SYNCED":
-        return SYNCED;
       case "NOT_SYNCED":
         return NOT_SYNCED;
+      case "IN_PROGRESS":
+        return IN_PROGRESS;
+      case "PARTIAL_SYNCED":
+        return PARTIAL_SYNCED;
+      case "SYNCED":
+        return SYNCED;
       default:
         return new DataStatus(Value.UNKNOWN, upperCasedValue);
     }

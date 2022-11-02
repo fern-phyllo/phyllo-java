@@ -1,6 +1,7 @@
-package com.phyllo.connect.api.client;
+package com.phyllo.connect.api;
 
 import com.phyllo.connect.api.client.connect.ConnectServiceClient;
+import com.phyllo.connect.api.core.BasicAuth;
 import java.lang.String;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;

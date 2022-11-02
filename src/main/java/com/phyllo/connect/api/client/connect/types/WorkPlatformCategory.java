@@ -8,17 +8,17 @@ import java.lang.String;
 import java.util.Locale;
 
 public final class WorkPlatformCategory {
-  public static final WorkPlatformCategory SOCIAL = new WorkPlatformCategory(Value.SOCIAL, "SOCIAL");
+  public static final WorkPlatformCategory MEDIA = new WorkPlatformCategory(Value.MEDIA, "MEDIA");
 
   public static final WorkPlatformCategory BUSINESS = new WorkPlatformCategory(Value.BUSINESS, "BUSINESS");
 
   public static final WorkPlatformCategory LIFESTYLE = new WorkPlatformCategory(Value.LIFESTYLE, "LIFESTYLE");
 
+  public static final WorkPlatformCategory ENTERTAINMENT = new WorkPlatformCategory(Value.ENTERTAINMENT, "ENTERTAINMENT");
+
   public static final WorkPlatformCategory EDUCATION = new WorkPlatformCategory(Value.EDUCATION, "EDUCATION");
 
-  public static final WorkPlatformCategory MEDIA = new WorkPlatformCategory(Value.MEDIA, "MEDIA");
-
-  public static final WorkPlatformCategory ENTERTAINMENT = new WorkPlatformCategory(Value.ENTERTAINMENT, "ENTERTAINMENT");
+  public static final WorkPlatformCategory SOCIAL = new WorkPlatformCategory(Value.SOCIAL, "SOCIAL");
 
   private final Value value;
 
@@ -52,18 +52,18 @@ public final class WorkPlatformCategory {
 
   public <T> T visit(Visitor<T> visitor) {
     switch (value) {
-      case SOCIAL:
-        return visitor.visitSocial();
+      case MEDIA:
+        return visitor.visitMedia();
       case BUSINESS:
         return visitor.visitBusiness();
       case LIFESTYLE:
         return visitor.visitLifestyle();
-      case EDUCATION:
-        return visitor.visitEducation();
-      case MEDIA:
-        return visitor.visitMedia();
       case ENTERTAINMENT:
         return visitor.visitEntertainment();
+      case EDUCATION:
+        return visitor.visitEducation();
+      case SOCIAL:
+        return visitor.visitSocial();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -76,18 +76,18 @@ public final class WorkPlatformCategory {
   public static WorkPlatformCategory valueOf(String value) {
     String upperCasedValue = value.toUpperCase(Locale.ROOT);
     switch (upperCasedValue) {
-      case "SOCIAL":
-        return SOCIAL;
+      case "MEDIA":
+        return MEDIA;
       case "BUSINESS":
         return BUSINESS;
       case "LIFESTYLE":
         return LIFESTYLE;
-      case "EDUCATION":
-        return EDUCATION;
-      case "MEDIA":
-        return MEDIA;
       case "ENTERTAINMENT":
         return ENTERTAINMENT;
+      case "EDUCATION":
+        return EDUCATION;
+      case "SOCIAL":
+        return SOCIAL;
       default:
         return new WorkPlatformCategory(Value.UNKNOWN, upperCasedValue);
     }

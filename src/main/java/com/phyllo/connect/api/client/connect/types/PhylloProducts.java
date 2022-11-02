@@ -10,13 +10,13 @@ import java.util.Locale;
 public final class PhylloProducts {
   public static final PhylloProducts IDENTITY = new PhylloProducts(Value.IDENTITY, "IDENTITY");
 
-  public static final PhylloProducts ENGAGEMENT = new PhylloProducts(Value.ENGAGEMENT, "ENGAGEMENT");
-
   public static final PhylloProducts INCOME = new PhylloProducts(Value.INCOME, "INCOME");
+
+  public static final PhylloProducts IDENTITY_AUDIENCE = new PhylloProducts(Value.IDENTITY_AUDIENCE, "IDENTITY.AUDIENCE");
 
   public static final PhylloProducts ENGAGEMENT_AUDIENCE = new PhylloProducts(Value.ENGAGEMENT_AUDIENCE, "ENGAGEMENT.AUDIENCE");
 
-  public static final PhylloProducts IDENTITY_AUDIENCE = new PhylloProducts(Value.IDENTITY_AUDIENCE, "IDENTITY.AUDIENCE");
+  public static final PhylloProducts ENGAGEMENT = new PhylloProducts(Value.ENGAGEMENT, "ENGAGEMENT");
 
   private final Value value;
 
@@ -52,14 +52,14 @@ public final class PhylloProducts {
     switch (value) {
       case IDENTITY:
         return visitor.visitIdentity();
-      case ENGAGEMENT:
-        return visitor.visitEngagement();
       case INCOME:
         return visitor.visitIncome();
-      case ENGAGEMENT_AUDIENCE:
-        return visitor.visitEngagementAudience();
       case IDENTITY_AUDIENCE:
         return visitor.visitIdentityAudience();
+      case ENGAGEMENT_AUDIENCE:
+        return visitor.visitEngagementAudience();
+      case ENGAGEMENT:
+        return visitor.visitEngagement();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -74,14 +74,14 @@ public final class PhylloProducts {
     switch (upperCasedValue) {
       case "IDENTITY":
         return IDENTITY;
-      case "ENGAGEMENT":
-        return ENGAGEMENT;
       case "INCOME":
         return INCOME;
-      case "ENGAGEMENT.AUDIENCE":
-        return ENGAGEMENT_AUDIENCE;
       case "IDENTITY.AUDIENCE":
         return IDENTITY_AUDIENCE;
+      case "ENGAGEMENT.AUDIENCE":
+        return ENGAGEMENT_AUDIENCE;
+      case "ENGAGEMENT":
+        return ENGAGEMENT;
       default:
         return new PhylloProducts(Value.UNKNOWN, upperCasedValue);
     }

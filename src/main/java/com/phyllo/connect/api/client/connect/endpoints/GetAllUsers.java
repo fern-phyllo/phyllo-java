@@ -1,6 +1,6 @@
 package com.phyllo.connect.api.client.connect.endpoints;
 
-import com.phyllo.connect.api.client.BasicAuth;
+import com.phyllo.connect.api.core.BasicAuth;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;

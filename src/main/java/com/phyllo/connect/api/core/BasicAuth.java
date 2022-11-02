@@ -1,4 +1,4 @@
-package com.phyllo.connect.api.client;
+package com.phyllo.connect.api.core;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.IllegalStateException;
