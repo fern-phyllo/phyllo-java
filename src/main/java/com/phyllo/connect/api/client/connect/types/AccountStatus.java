@@ -10,9 +10,9 @@ import java.util.Locale;
 public final class AccountStatus {
   public static final AccountStatus CONNECTED = new AccountStatus(Value.CONNECTED, "CONNECTED");
 
-  public static final AccountStatus SESSION_EXPIRED = new AccountStatus(Value.SESSION_EXPIRED, "SESSION_EXPIRED");
-
   public static final AccountStatus NOT_CONNECTED = new AccountStatus(Value.NOT_CONNECTED, "NOT_CONNECTED");
+
+  public static final AccountStatus SESSION_EXPIRED = new AccountStatus(Value.SESSION_EXPIRED, "SESSION_EXPIRED");
 
   private final Value value;
 
@@ -48,10 +48,10 @@ public final class AccountStatus {
     switch (value) {
       case CONNECTED:
         return visitor.visitConnected();
-      case SESSION_EXPIRED:
-        return visitor.visitSessionExpired();
       case NOT_CONNECTED:
         return visitor.visitNotConnected();
+      case SESSION_EXPIRED:
+        return visitor.visitSessionExpired();
       case UNKNOWN:
       default:
         return visitor.visitUnknown(string);
@@ -66,10 +66,10 @@ public final class AccountStatus {
     switch (upperCasedValue) {
       case "CONNECTED":
         return CONNECTED;
-      case "SESSION_EXPIRED":
-        return SESSION_EXPIRED;
       case "NOT_CONNECTED":
         return NOT_CONNECTED;
+      case "SESSION_EXPIRED":
+        return SESSION_EXPIRED;
       default:
         return new AccountStatus(Value.UNKNOWN, upperCasedValue);
     }

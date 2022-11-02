@@ -107,13 +107,13 @@ public final class SDKTokenRequest {
 
     @Override
     public _FinalStage addAllProducts(Set<PhylloProducts> products) {
-      this.products.add(products);
+      this.products.addAll(products);
       return this;
     }
 
     @Override
     public _FinalStage products(PhylloProducts products) {
-      this.products.addAll(products);
+      this.products.add(products);
       return this;
     }
 
